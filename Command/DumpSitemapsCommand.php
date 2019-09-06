@@ -158,6 +158,7 @@ class DumpSitemapsCommand extends Command
 
         $scheme = $context->getScheme();
         $port = '';
+        $baseUrl = ltrim($context->getBaseUrl() . '/', '/');
 
         if ('http' === $scheme && 80 != $context->getHttpPort()) {
             $port = ':'.$context->getHttpPort();
@@ -165,6 +166,6 @@ class DumpSitemapsCommand extends Command
             $port = ':'.$context->getHttpsPort();
         }
 
-        return rtrim($scheme . '://' . $host . $port, '/') . '/';
+        return rtrim($scheme . '://' . $host . $port, '/') . '/' . $baseUrl;
     }
 }
